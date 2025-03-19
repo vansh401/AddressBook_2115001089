@@ -1,0 +1,12 @@
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\bin\Debug\net6.0\ModelLayer.deps.json
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\bin\Debug\net6.0\ModelLayer.dll
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\bin\Debug\net6.0\ModelLayer.pdb
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.dll
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\refint\ModelLayer.dll
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.pdb
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ref\ModelLayer.dll
+C:\Users\Lenovo\source\repos\AddressBookAPI\ModelLayer\obj\Debug\net6.0\ModelLayer.csproj.AssemblyReference.cache
