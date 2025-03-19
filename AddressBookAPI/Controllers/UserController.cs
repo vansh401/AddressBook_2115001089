@@ -4,6 +4,8 @@ using ModelLayer.Model;
 
 namespace AddressBookAPI.Controllers
 {
+    [ApiController]
+    [Route("api/user")]
     public class UserController:ControllerBase
     {
         private readonly IUserBL _userService;

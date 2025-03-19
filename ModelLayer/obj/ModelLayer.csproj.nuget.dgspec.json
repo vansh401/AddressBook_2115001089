@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\ModelLayer\\ModelLayer.csproj": {}
+    "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\ModelLayer\\ModelLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\ModelLayer\\ModelLayer.csproj": {
+    "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\ModelLayer\\ModelLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\ModelLayer\\ModelLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\ModelLayer\\ModelLayer.csproj",
         "projectName": "ModelLayer",
-        "projectPath": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\ModelLayer\\ModelLayer.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\ModelLayer\\ModelLayer.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\ModelLayer\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\ModelLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

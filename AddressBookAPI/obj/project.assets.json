@@ -2627,11 +2627,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\AddressBookAPI\\AddressBookAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\AddressBookAPI\\AddressBookAPI.csproj",
       "projectName": "AddressBookAPI",
-      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\AddressBookAPI\\AddressBookAPI.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\AddressBookAPI\\AddressBookAPI.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\AddressBookAPI\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\AddressBookAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2652,8 +2652,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\AddressBookAPI\\BusinessLayer\\BusinessLayer.csproj"
+            "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\AddressBook_Clone\\AddressBook_2115001089\\BusinessLayer\\BusinessLayer.csproj"
             }
           }
         }
