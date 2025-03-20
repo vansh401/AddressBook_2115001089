@@ -1,3 +1,4 @@
+using BusinessLayer.Interface;
 using BusinessLayer.Service;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
@@ -11,11 +12,11 @@ namespace AddressBookAPI.Controllers
     public class AddressBookAPIController : ControllerBase
     {
         private readonly ILogger<AddressBookAPIController> _logger;
-        private readonly AddressBookBL _addressBookBl;
-        public AddressBookAPIController(ILogger<AddressBookAPIController> logger, AddressBookBL addressBookBL)
+        private readonly IAddressBookService _addressBookService;
+        public AddressBookAPIController(ILogger<AddressBookAPIController> logger, IAddressBookService addressBookService)
         {
             _logger = logger;
-            _addressBookBl = addressBookBL;
+            _addressBookService = addressBookService;
         }
 
         [HttpGet]
@@ -24,7 +25,7 @@ namespace AddressBookAPI.Controllers
             try
             {
                 _logger.LogInformation("Fetching All Contacts:");
-                var contacts=_addressBookBl.GetAllContact(userId);
+                var contacts=_addressBookService.GetAllContact(userId);
                 if(contacts==null || contacts.Count == 0)
                 {
                     _logger.LogWarning("No Contact Found");
@@ -60,7 +61,7 @@ namespace AddressBookAPI.Controllers
             try
             {
                 _logger.LogInformation($"Fetching Contact for UserID: {userId}, ContactID: {id}");
-                var contact = _addressBookBl.GetContactById(userId, id);
+                var contact = _addressBookService.GetContactById(userId, id);
                 if (contact == null)
                     return NotFound(new ResponseModel<AddressBookEntity> { Success = false, Message = "Contact not found" });
                 return Ok(new ResponseModel<AddressBookEntity> { Success = true, Message = "Contact found", Data = contact });
@@ -78,7 +79,7 @@ namespace AddressBookAPI.Controllers
         {
             try
             {
-                _addressBookBl.AddContact(userId, contactName, contactNumber);
+                _addressBookService.AddContact(userId, contactName, contactNumber);
                 _logger.LogInformation("Contact Saved");
 
                 return Ok(new ResponseModel<string>
@@ -108,7 +109,7 @@ namespace AddressBookAPI.Controllers
             {
                 _logger.LogInformation($"Updating a contact with ID: {id}");
 
-                bool isUpdated = _addressBookBl.UpdateContact(userId, id, name, number);
+                bool isUpdated = _addressBookService.UpdateContact(userId, id, name, number);
 
                 if (!isUpdated)
                 {
@@ -147,7 +148,7 @@ namespace AddressBookAPI.Controllers
             {
                 _logger.LogInformation($"Deleting contact with ID: {id}");
 
-                bool isDeleted = _addressBookBl.DeleteContact(userId, id);
+                bool isDeleted = _addressBookService.DeleteContact(userId, id);
 
                 if (!isDeleted)
                 {

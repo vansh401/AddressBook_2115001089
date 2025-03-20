@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Interface;
 using RepositoryLayer.Entity;
+using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
 
 namespace BusinessLayer.Service
 {
-    public class AddressBookBL
+    public class AddressBookService:IAddressBookService
     {
-        private readonly AddressBookRL _addressBookRL;
-        public AddressBookBL(AddressBookRL addressBookRL)
+        private readonly IAddressBookRL _addressBookRL;
+        public AddressBookService(IAddressBookRL addressBookRL)
         {
             _addressBookRL = addressBookRL;
         }
