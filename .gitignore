@@ -1,10 +1,8 @@
 
 .vs
-**/obj/
-**/bin/
-*.cache
+bin/
+obj/
 *.dll
 *.pdb
 *.exe
-*.log
-*.nuget.*
+
