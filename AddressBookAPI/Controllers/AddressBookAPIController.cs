@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,17 @@ namespace AddressBookAPI.Controllers
         {
             _logger = logger;
             _addressBookService = addressBookService;
+        }
+
+        private int GetUserIdFromToken()
+        {
+            var userId = User.FindFirstValue("userId");
+            if(userId == null)
+            {
+                _logger.LogWarning("Invalid Or missing UserId token");
+                throw new UnauthorizedAccessException(userId);
+            }
+            return int.Parse(userId);
         }
 
         [HttpGet]
