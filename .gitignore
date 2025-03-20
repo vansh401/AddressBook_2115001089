@@ -2,3 +2,9 @@
 .vs
 **/obj/
 **/bin/
+*.cache
+*.dll
+*.pdb
+*.exe
+*.log
+*.nuget.*
