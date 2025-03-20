@@ -10,7 +10,7 @@ namespace BusinessLayer.Interface
 {
     public interface IUserBL
     {
-        ResponseModel<UserEntity> RegisterUser(RegisterReq model);
+        ResponseModel<string> RegisterUser(RegisterReq model);
         ResponseModel<string> LoginUser(LoginReq model);
         ResponseModel<string> ForgotPassword(ForgotPasswordReq model);
         ResponseModel<string> ResetPassword(ResetPasswordReq model);

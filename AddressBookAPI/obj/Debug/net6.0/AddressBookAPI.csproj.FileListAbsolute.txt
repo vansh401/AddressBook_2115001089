@@ -96,6 +96,7 @@ C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\Addres
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.pdb
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
