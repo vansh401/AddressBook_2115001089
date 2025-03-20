@@ -2,6 +2,7 @@
 .vs
 **/bin/
 **/obj/
-*.dll
-*.pdb
-*.exe
+**/*.dll
+**/*.exe
+**/*.pdb
+**/*.cache
