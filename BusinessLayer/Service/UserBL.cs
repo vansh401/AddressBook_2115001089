@@ -21,6 +21,7 @@ namespace BusinessLayer.Service
             _UserRepo = UserRepo;
             _jwtTokenGenerator = jwtTokenGenerator;
         }
+
         public ResponseModel<string> RegisterUser(RegisterReq model)
         {
             if (_UserRepo.UserExists(model.Email))
@@ -60,20 +61,40 @@ namespace BusinessLayer.Service
             };
         }
 
-        public ResponseModel<string> ForgotPassword(ForgotPasswordReq model)
-        {
-            // logic of reset password link 
-            return new ResponseModel<string> { Success = true, Message = "Password Reset Link Sent" };
-        }
-        
 
-        public ResponseModel<string> ResetPassword(ResetPasswordReq model)
+        public string GenerateResetToken(int userId, string email)
         {
-            string hashedPassword = model.NewPassword;
-            _UserRepo.UpdateUserPassword(model.Email,hashedPassword);
-
-            return new ResponseModel<string> { Success = true, Message = "Password Reset Successfully" };
+            if (userId <= 0 || string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentException("Invalid userId or email for reset token generation.");
+            }
+            return _jwtTokenGenerator.GenerateResetToken(userId, email);
         }
+
+
+        public UserEntity GetUserByEmail(string email)
+        {
+            return _UserRepo.GetUserByEmail(email);
+        }
+
+        public UserEntity ResetPassword(string token, ResetPasswordReq model)
+        {
+            int userId = _jwtTokenGenerator.ResetPassword(token, model);
+            var user = _UserRepo.GetUserById(userId);
+            if (user != null)
+            {
+                string hashedPassword = HashingPassword.HashPassword(model.NewPassword);
+                user.PasswordHash = hashedPassword;
+                if (_UserRepo.UpdateUserPassword(user.Email, user.PasswordHash))
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+
+
 
 
     }

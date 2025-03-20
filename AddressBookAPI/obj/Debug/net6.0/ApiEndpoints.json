@@ -117,7 +117,7 @@
   {
     "ContainingType": "AddressBookAPI.Controllers.UserController",
     "Method": "ForgotPassword",
-    "RelativePath": "api/user/forgotpassword",
+    "RelativePath": "api/auth/forgotpassword",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -133,7 +133,7 @@
   {
     "ContainingType": "AddressBookAPI.Controllers.UserController",
     "Method": "Login",
-    "RelativePath": "api/user/login",
+    "RelativePath": "api/auth/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -149,7 +149,7 @@
   {
     "ContainingType": "AddressBookAPI.Controllers.UserController",
     "Method": "Register",
-    "RelativePath": "api/user/register",
+    "RelativePath": "api/auth/register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -165,11 +165,16 @@
   {
     "ContainingType": "AddressBookAPI.Controllers.UserController",
     "Method": "ResetPassword",
-    "RelativePath": "api/user/resetpassword",
+    "RelativePath": "api/auth/resetpassword",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "model",
         "Type": "ModelLayer.Model.ResetPasswordReq",

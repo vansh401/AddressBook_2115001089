@@ -179,7 +179,7 @@
         }
       }
     },
-    "/api/user/register": {
+    "/api/auth/register": {
       "post": {
         "tags": [
           "User"
@@ -210,7 +210,7 @@
         }
       }
     },
-    "/api/user/login": {
+    "/api/auth/login": {
       "post": {
         "tags": [
           "User"
@@ -241,7 +241,7 @@
         }
       }
     },
-    "/api/user/forgotpassword": {
+    "/api/auth/forgotpassword": {
       "post": {
         "tags": [
           "User"
@@ -272,10 +272,19 @@
         }
       }
     },
-    "/api/user/resetpassword": {
+    "/api/auth/resetpassword": {
       "post": {
         "tags": [
           "User"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
