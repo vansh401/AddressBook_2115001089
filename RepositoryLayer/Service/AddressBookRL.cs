@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
+using RepositoryLayer.Interface;
 
 namespace RepositoryLayer.Service
 {
-    public class AddressBookRL
+    public class AddressBookRL:IAddressBookRL
     {
         private readonly AppDbContext _context;
         public AddressBookRL(AppDbContext context)
