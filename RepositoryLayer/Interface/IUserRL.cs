@@ -13,6 +13,7 @@ namespace RepositoryLayer.Interface
         UserEntity CreateUser(string username,string email, string passwordHash);
         UserEntity GetUserByEmail(string email);
         bool UpdateUserPassword(string email, string newPasswordHash);
+        UserEntity GetUserById(int userId);
 
     }
 }

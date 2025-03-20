@@ -39,6 +39,7 @@ builder.Services.AddScoped<IAddressBookRL, AddressBookRL>();
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserRL, UserRL>();
 builder.Services.AddScoped<JwtTokenGenerator>();
+builder.Services.AddSingleton<IEmailService, EmailService>();
 
 // Add NLog to the service collection
 builder.Logging.ClearProviders();

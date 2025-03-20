@@ -44,5 +44,11 @@ namespace RepositoryLayer.Service
             }
             return false;
         }
+
+
+        public UserEntity GetUserById(int userId)
+        {
+            return _context.Users.FirstOrDefault(u => u.Id == userId);
+        }
     }
 }
