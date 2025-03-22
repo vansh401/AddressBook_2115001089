@@ -14,10 +14,12 @@ namespace AddressBookAPI.Controllers
     {
         private readonly ILogger<AddressBookAPIController> _logger;
         private readonly IAddressBookService _addressBookService;
-        public AddressBookAPIController(ILogger<AddressBookAPIController> logger, IAddressBookService addressBookService)
+        private readonly IRedisCacheService _redisCacheService;
+        public AddressBookAPIController(ILogger<AddressBookAPIController> logger, IAddressBookService addressBookService, IRedisCacheService redisCacheService)
         {
             _logger = logger;
             _addressBookService = addressBookService;
+            _redisCacheService = redisCacheService;
         }
 
         private int GetUserIdFromToken()
@@ -32,26 +34,46 @@ namespace AddressBookAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllContacts(int userId)
+        public async Task<IActionResult> GetAllContacts()
         {
             try
             {
-                _logger.LogInformation("Fetching All Contacts:");
-                var contacts=_addressBookService.GetAllContact(userId);
-                if(contacts==null || contacts.Count == 0)
+                int userId = GetUserIdFromToken();
+                _logger.LogInformation("Checking cache for contacts");
+
+                // Check Redis Cache
+                var cacheKey = $"contacts_user_{userId}";
+                var cachedcontacts = await _redisCacheService.GetCachedData<List<AddressBookEntity>>(cacheKey);
+
+                if (cachedcontacts != null)
                 {
-                    _logger.LogWarning("No Contact Found");
+                    _logger.LogInformation("Returning greetings from cache.");
+                    return Ok(new ResponseModel<List<AddressBookEntity>>
+                    {
+                        Success = true,
+                        Message = $"Cache hit for user {userId} contacts",
+                        Data = cachedcontacts
+                    });
+                }
+                _logger.LogInformation("Fetching all contacts from Database...");
+                var contacts = _addressBookService.GetAllContact(userId);
+                if (contacts == null || contacts.Count == 0)
+                {
+                    _logger.LogWarning("No Contacts found.");
                     return NotFound(new ResponseModel<List<AddressBookEntity>>
                     {
                         Success = false,
-                        Message="No Contacts Found"
-                  
+                        Message = "No contacts found."
                     });
                 }
+                _logger.LogInformation($"Caching data for key: contacts_user_{userId}");
+                await _redisCacheService.SetCachedData($"contacts_user_{userId}", contacts, TimeSpan.FromMinutes(20));
+
+
                 var response = new ResponseModel<List<AddressBookEntity>>
                 {
                     Success = true,
-                    Message = "Contacts Retrieved Successfully",
+                    Message = "Contacts Fetched successfully!",
                     Data = contacts
                 };
                 return Ok(response);
@@ -62,43 +84,59 @@ namespace AddressBookAPI.Controllers
                 return StatusCode(500, new ResponseModel<List<AddressBookEntity>>
                 {
                     Success = false,
-                    Message = ex.Message
+                    Message = "Internal Server Error"
                 });
             }
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetContactById(int userId, int id)
+        public async Task<IActionResult> GetContactById(int id)
         {
             try
             {
+                int userId = GetUserIdFromToken();
                 _logger.LogInformation($"Fetching Contact for UserID: {userId}, ContactID: {id}");
+                var cacheKey = $"contact_{id}";
+                var cachedContact = await _redisCacheService.GetCachedData<AddressBookEntity>(cacheKey);
+                if (cachedContact != null)
+                {
+                    if (cachedContact.UserId != userId)
+                    {
+                        _logger.LogWarning($"Unauthorized access attempt by UserId {userId} for Contact ID {id}");
+                        return Unauthorized(new ResponseModel<string> { Success = false, Message = "Unauthorized access" });
+                    }
+                    _logger.LogInformation($"Cache hit for contact ID: {id}");
+                    return Ok(new ResponseModel<AddressBookEntity> { Success = true, Message = "Contact found (from cache)", Data = cachedContact });
+                }
+                _logger.LogInformation($"Fetching greeting from DB for UserID: {userId}, GreetingID: {id}");
                 var contact = _addressBookService.GetContactById(userId, id);
                 if (contact == null)
                     return NotFound(new ResponseModel<AddressBookEntity> { Success = false, Message = "Contact not found" });
+                await _redisCacheService.SetCachedData(cacheKey, contact, TimeSpan.FromMinutes(20));
                 return Ok(new ResponseModel<AddressBookEntity> { Success = true, Message = "Contact found", Data = contact });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in GetContactById method");
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, "Internal Server Error");
             }
         }
 
 
         [HttpPost]
-        public IActionResult AddContact([FromBody] int userId, string contactName, string contactNumber)
+        public IActionResult AddContact(string contactName, string contactNumber)
         {
             try
             {
+                int userId = GetUserIdFromToken();
                 _addressBookService.AddContact(userId, contactName, contactNumber);
-                _logger.LogInformation("Contact Saved");
+                _logger.LogInformation("Saving the Contact...");
 
                 return Ok(new ResponseModel<string>
                 {
                     Success = true,
                     Message = "Contact saved successfully",
-                    Data = "Contact Saved"
+                    Data = "Contact Saved!"
                 });
             }
             catch (UnauthorizedAccessException ex)
@@ -109,17 +147,18 @@ namespace AddressBookAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error in AddContact: {ex.Message}");
-                return StatusCode(500, new ResponseModel<string> { Success = false, Message = ex.Message});
+                return StatusCode(500, new ResponseModel<string> { Success = false, Message = "Internal Server Error" });
             }
         }
 
 
-        [HttpPut("id")]
-        public IActionResult UpdateContactById(int userId, int id, string name, string number)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateContactById(int id, string name, string number)
         {
             try
             {
-                _logger.LogInformation($"Updating a contact with ID: {id}");
+                int userId = GetUserIdFromToken();
+                _logger.LogInformation($"Attempting to update contact with ID: {id}");
 
                 bool isUpdated = _addressBookService.UpdateContact(userId, id, name, number);
 
@@ -132,6 +171,8 @@ namespace AddressBookAPI.Controllers
                         Message = $"Contact with ID {id} not found."
                     });
                 }
+                // Removing Cache since data changed
+                await _redisCacheService.RemoveCachedData("all_contacts");
                 var response = new ResponseModel<string>
                 {
                     Success = true,
@@ -146,7 +187,7 @@ namespace AddressBookAPI.Controllers
                 return StatusCode(500, new ResponseModel<string>
                 {
                     Success = false,
-                    Message = ex.Message
+                    Message = "Internal Server Error"
                 });
             }
         }
@@ -154,11 +195,12 @@ namespace AddressBookAPI.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteContactById(int userId,int id)
+        public async Task<IActionResult> DeleteContactById(int id)
         {
             try
             {
-                _logger.LogInformation($"Deleting contact with ID: {id}");
+                int userId = GetUserIdFromToken();
+                _logger.LogInformation($"Attempting to delete contact with ID: {id}");
 
                 bool isDeleted = _addressBookService.DeleteContact(userId, id);
 
@@ -171,6 +213,8 @@ namespace AddressBookAPI.Controllers
                         Message = "Contact not found."
                     });
                 }
+                // Removing Cache
+                await _redisCacheService.RemoveCachedData("all_contacts");
                 var response = new ResponseModel<string>
                 {
                     Success = true,
@@ -186,7 +230,7 @@ namespace AddressBookAPI.Controllers
                 return StatusCode(500, new ResponseModel<string>
                 {
                     Success = false,
-                    Message = ex.Message
+                    Message = "Internal Server Error"
                 });
             }
         }
