@@ -10,14 +10,19 @@ using RepositoryLayer.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using CacheLayer.Service;
+using StackExchange.Redis;
+
 var builder = WebApplication.CreateBuilder(args);
-var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
+
 logger.Info("Application Starting...");
 
-// Adding Greeting Messages API database
+// Adding Database Context
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
-// Add services to the container.
+
+// JWT Authentication Configuration
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -32,8 +37,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]))
         };
     });
+
+
+// Configure Redis connection
+var redisConfig = builder.Configuration.GetSection("Redis:ConnectionString").Value;
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConfig));
+
+builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();
+
+
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+
+// Dependency Injection for Services
 builder.Services.AddScoped<IAddressBookService, AddressBookService>();
 builder.Services.AddScoped<IAddressBookRL, AddressBookRL>();
 builder.Services.AddScoped<IUserBL, UserBL>();
@@ -41,24 +57,25 @@ builder.Services.AddScoped<IUserRL, UserRL>();
 builder.Services.AddScoped<JwtTokenGenerator>();
 builder.Services.AddSingleton<IEmailService, EmailService>();
 
-// Add NLog to the service collection
+// NLog Configuration
 builder.Logging.ClearProviders();
 builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
 builder.Host.UseNLog();
+
+// Swagger for API documentation
 builder.Services.AddSwaggerGen();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 app.UseSwagger();
-
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

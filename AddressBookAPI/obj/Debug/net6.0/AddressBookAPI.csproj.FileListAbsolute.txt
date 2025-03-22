@@ -91,6 +91,7 @@ C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\Addres
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\appsettings.json
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.staticwebassets.endpoints.json
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.exe
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\nlog.config
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.deps.json
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.runtimeconfig.json
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\AddressBookAPI.dll
@@ -105,6 +106,7 @@ C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\Addres
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
@@ -123,6 +125,8 @@ C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\Addres
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\NLog.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\StackExchange.Redis.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -1,0 +1,108 @@
+﻿2025-03-21 12:11:12.1305 INFO Application Starting... 
+2025-03-21 12:11:13.0128 INFO User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2025-03-21 12:11:13.2986 INFO Now listening on: https://localhost:7108 
+2025-03-21 12:11:13.2986 INFO Now listening on: http://localhost:5196 
+2025-03-21 12:11:13.3476 INFO Application started. Press Ctrl+C to shut down. 
+2025-03-21 12:11:13.3476 INFO Hosting environment: Development 
+2025-03-21 12:11:13.3476 INFO Content root path: C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\ 
+2025-03-21 12:11:13.9465 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.html - - 
+2025-03-21 12:11:14.2721 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.html - - - 200 - text/html;charset=utf-8 329.9636ms 
+2025-03-21 12:11:14.2879 INFO Request starting HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-21 12:11:14.2879 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.js - - 
+2025-03-21 12:11:14.2903 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.js - - - 200 - application/javascript;charset=utf-8 2.2915ms 
+2025-03-21 12:11:14.2903 INFO Request starting HTTP/2 GET https://localhost:7108/_vs/browserLink - - 
+2025-03-21 12:11:14.2903 INFO Request finished HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - - 200 12360 application/javascript;+charset=utf-8 8.9718ms 
+2025-03-21 12:11:14.3768 INFO Request finished HTTP/2 GET https://localhost:7108/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 82.3836ms 
+2025-03-21 12:11:14.4191 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - 
+2025-03-21 12:11:14.4191 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 7.0572ms 
+2025-03-21 12:12:20.8692 INFO Request starting HTTP/2 POST https://localhost:7108/api/auth/register application/json 78 
+2025-03-21 12:12:21.0700 INFO Executing endpoint 'AddressBookAPI.Controllers.UserController.Register (AddressBookAPI)' 
+2025-03-21 12:12:21.1220 INFO Route matched with {action = "Register", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register(ModelLayer.Model.RegisterReq) on controller AddressBookAPI.Controllers.UserController (AddressBookAPI). 
+2025-03-21 12:12:23.8897 INFO Entity Framework Core 6.0.36 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.36' with options: None 
+2025-03-21 12:12:26.3489 INFO Executed DbCommand (189ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2025-03-21 12:12:27.0721 INFO Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 100), @p1='?' (Size = 4000), @p2='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Email], [PasswordHash], [UserName])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [Users]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity(); 
+2025-03-21 12:12:27.2138 INFO User Registered successfully 
+2025-03-21 12:12:27.2311 INFO Executing OkObjectResult, writing value of type 'ModelLayer.Model.ResponseModel`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. 
+2025-03-21 12:12:27.2700 INFO Executed action AddressBookAPI.Controllers.UserController.Register (AddressBookAPI) in 6115.3165ms 
+2025-03-21 12:12:27.2700 INFO Executed endpoint 'AddressBookAPI.Controllers.UserController.Register (AddressBookAPI)' 
+2025-03-21 12:12:27.2972 INFO Request finished HTTP/2 POST https://localhost:7108/api/auth/register application/json 78 - 200 - application/json;+charset=utf-8 6428.0397ms 
+2025-03-21 12:19:09.7954 INFO Application Starting... 
+2025-03-21 12:19:52.8440 INFO Application Starting... 
+2025-03-21 12:20:57.8027 INFO Application Starting... 
+2025-03-21 12:20:59.1678 INFO User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2025-03-21 12:20:59.8816 INFO Now listening on: https://localhost:7108 
+2025-03-21 12:20:59.8816 INFO Now listening on: http://localhost:5196 
+2025-03-21 12:20:59.9551 INFO Application started. Press Ctrl+C to shut down. 
+2025-03-21 12:20:59.9551 INFO Hosting environment: Development 
+2025-03-21 12:20:59.9551 INFO Content root path: C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\ 
+2025-03-21 12:21:00.8184 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.html - - 
+2025-03-21 12:21:01.2982 INFO Request starting HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-21 12:21:01.2982 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.js - - 
+2025-03-21 12:21:01.3074 INFO Request starting HTTP/2 GET https://localhost:7108/_vs/browserLink - - 
+2025-03-21 12:21:01.3074 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.js - - - 200 - application/javascript;charset=utf-8 2.5567ms 
+2025-03-21 12:21:01.3074 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.html - - - 200 - text/html;charset=utf-8 480.2965ms 
+2025-03-21 12:21:01.3074 INFO Request finished HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - - 200 12360 application/javascript;+charset=utf-8 13.2532ms 
+2025-03-21 12:21:01.4610 INFO Request finished HTTP/2 GET https://localhost:7108/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 153.5946ms 
+2025-03-21 12:21:01.5328 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - 
+2025-03-21 12:21:01.5456 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 12.9104ms 
+2025-03-21 14:55:22.3359 INFO Application Starting... 
+2025-03-21 14:55:23.9736 INFO User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2025-03-21 14:55:24.7199 INFO Now listening on: https://localhost:7108 
+2025-03-21 14:55:24.7199 INFO Now listening on: http://localhost:5196 
+2025-03-21 14:55:24.7814 INFO Application started. Press Ctrl+C to shut down. 
+2025-03-21 14:55:24.7814 INFO Hosting environment: Development 
+2025-03-21 14:55:24.7814 INFO Content root path: C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\ 
+2025-03-21 14:55:25.9882 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.html - - 
+2025-03-21 14:55:26.4461 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.html - - - 200 - text/html;charset=utf-8 461.3093ms 
+2025-03-21 14:55:26.5159 INFO Request starting HTTP/2 GET https://localhost:7108/_vs/browserLink - - 
+2025-03-21 14:55:26.5159 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.js - - 
+2025-03-21 14:55:26.5159 INFO Request starting HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-21 14:55:26.5159 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.js - - - 200 - application/javascript;charset=utf-8 4.3603ms 
+2025-03-21 14:55:26.5415 INFO Request finished HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - - 200 12360 application/javascript;+charset=utf-8 25.7979ms 
+2025-03-21 14:55:26.6553 INFO Request finished HTTP/2 GET https://localhost:7108/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 139.5859ms 
+2025-03-21 14:55:26.7337 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - 
+2025-03-21 14:55:26.7337 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 7.9721ms 
+2025-03-21 22:17:46.1034 INFO Application Starting... 
+2025-03-22 13:54:03.2873 INFO Application Starting... 
+2025-03-22 13:55:02.9823 INFO Application Starting... 
+2025-03-22 13:55:04.6881 INFO User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2025-03-22 13:55:05.3653 INFO Now listening on: https://localhost:7108 
+2025-03-22 13:55:05.3653 INFO Now listening on: http://localhost:5196 
+2025-03-22 13:55:05.4366 INFO Application started. Press Ctrl+C to shut down. 
+2025-03-22 13:55:05.4366 INFO Hosting environment: Development 
+2025-03-22 13:55:05.4366 INFO Content root path: C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\ 
+2025-03-22 13:55:08.1098 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.html - - 
+2025-03-22 13:55:08.6539 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.html - - - 200 - text/html;charset=utf-8 534.1030ms 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/swagger-ui.css - - 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/swagger-ui-standalone-preset.js - - 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.css - - 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/swagger-ui-bundle.js - - 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/_vs/browserLink - - 
+2025-03-22 13:55:08.6539 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.js - - 
+2025-03-22 13:55:08.6792 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.js - - - 200 - application/javascript;charset=utf-8 18.8452ms 
+2025-03-22 13:55:08.7223 INFO The file /swagger-ui-standalone-preset.js was not modified 
+2025-03-22 13:55:08.7223 INFO The file /swagger-ui-bundle.js was not modified 
+2025-03-22 13:55:08.7223 INFO The file /index.css was not modified 
+2025-03-22 13:55:08.7223 INFO The file /swagger-ui.css was not modified 
+2025-03-22 13:55:08.7277 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/swagger-ui-bundle.js - - - 304 - application/javascript 69.5043ms 
+2025-03-22 13:55:08.7277 INFO Request finished HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - - 200 12360 application/javascript;+charset=utf-8 69.7260ms 
+2025-03-22 13:55:08.7277 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.css - - - 304 - text/css 70.1116ms 
+2025-03-22 13:55:08.7277 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/swagger-ui-standalone-preset.js - - - 304 - application/javascript 69.8070ms 
+2025-03-22 13:55:08.7277 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/swagger-ui.css - - - 304 - text/css 70.2476ms 
+2025-03-22 13:55:08.8622 INFO Request finished HTTP/2 GET https://localhost:7108/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 201.1040ms 
+2025-03-22 13:55:08.9323 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - 
+2025-03-22 13:55:08.9536 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 21.2546ms 
