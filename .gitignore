@@ -6,3 +6,6 @@
 **/*.exe
 **/*.pdb
 **/*.cache
+
+# Ignore build files
+**/obj/
