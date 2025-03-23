@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
@@ -8,6 +9,7 @@ using RepositoryLayer.Service;
 
 namespace AddressBookAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/addressbook")]
     public class AddressBookAPIController : ControllerBase
@@ -33,6 +35,8 @@ namespace AddressBookAPI.Controllers
             return int.Parse(userId);
         }
 
+
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllContacts()
         {
@@ -88,7 +92,7 @@ namespace AddressBookAPI.Controllers
                 });
             }
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetContactById(int id)
         {
@@ -122,14 +126,14 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpPost]
-        public IActionResult AddContact(string contactName, string contactNumber)
+        public IActionResult AddContact(string contactName, string contactNumber, string email, string address)
         {
             try
             {
                 int userId = GetUserIdFromToken();
-                _addressBookService.AddContact(userId, contactName, contactNumber);
+                _addressBookService.AddContact(userId, contactName, contactNumber,email,address);
                 _logger.LogInformation("Saving the Contact...");
 
                 return Ok(new ResponseModel<string>
@@ -151,16 +155,16 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateContactById(int id, string name, string number)
+        public async Task<IActionResult> UpdateContactById(int id, string name, string number,string email, string address)
         {
             try
             {
                 int userId = GetUserIdFromToken();
                 _logger.LogInformation($"Attempting to update contact with ID: {id}");
 
-                bool isUpdated = _addressBookService.UpdateContact(userId, id, name, number);
+                bool isUpdated = _addressBookService.UpdateContact(userId, id, name, number,email,address);
 
                 if (!isUpdated)
                 {
@@ -192,7 +196,7 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteContactById(int id)
@@ -232,6 +236,54 @@ namespace AddressBookAPI.Controllers
                     Success = false,
                     Message = "Internal Server Error"
                 });
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/contacts")]
+
+        public IActionResult GetAllContactsForAdmin()
+        {
+            try
+            {
+                _logger.LogInformation("fetching All Contacts for Admin...");
+                var contacts = _addressBookService.GetAllContactsForAdmin();
+                var response = new ResponseModel<List<AddressBookEntity>>();
+                if (contacts == null || !contacts.Any())
+                {
+                    response.Success = false;
+                    response.Message = "No contacts found.";
+                    return NotFound(response);
+                }
+                response.Success = true;
+                response.Message = "Contacts found.";
+                response.Data = contacts;
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred.", error = ex.Message });
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("admin/contacts/{id}")]
+        public async Task<IActionResult> DeleteContactByAdmin(int id)
+        {
+            try
+            {
+                _logger.LogInformation($"Deleting Contacts {id} for Admin...");
+                bool isDeleted = _addressBookService.DeleteContactByAdmin(id);
+                if (!isDeleted)
+                {
+                    return NotFound(new { message = "Contact not found." });
+                }
+                await _redisCacheService.RemoveCachedData("all_contacts");
+                return Ok(new { message = "Contact deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred.", error = ex.Message });
             }
         }
     }
