@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBookAPI", "AddressBookAPI\AddressBookAPI.csproj", "{743C25DE-183D-49DD-9F89-6CCE344F5351}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{B2868D1E-CA38-4C75-A497-7052E932BC07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "RepositoryLayer\RepositoryLayer.csproj", "{723FB29F-09F8-42FC-A2C4-333A91BC18D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "Middleware\Middleware.csproj", "{04FBA4D5-DA7D-4D87-AADB-1437A37DAED8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{723FB29F-09F8-42FC-A2C4-333A91BC18D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{723FB29F-09F8-42FC-A2C4-333A91BC18D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{723FB29F-09F8-42FC-A2C4-333A91BC18D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04FBA4D5-DA7D-4D87-AADB-1437A37DAED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04FBA4D5-DA7D-4D87-AADB-1437A37DAED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04FBA4D5-DA7D-4D87-AADB-1437A37DAED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04FBA4D5-DA7D-4D87-AADB-1437A37DAED8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -182,3 +182,8 @@ C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\Addres
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\obj\Debug\net6.0\AddressBookAPI.pdb
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\obj\Debug\net6.0\AddressBookAPI.genruntimeconfig.cache
 C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\obj\Debug\net6.0\ref\AddressBookAPI.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\System.Threading.Channels.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Middleware.dll
+C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\bin\Debug\net6.0\Middleware.pdb
