@@ -178,3 +178,13 @@ WHERE [u].[Email] = @__email_0
 2025-03-23 16:16:52.3071 INFO Executed endpoint 'AddressBookAPI.Controllers.UserController.ForgotPassword (AddressBookAPI)' 
 2025-03-23 16:16:52.3071 INFO Request finished HTTP/2 POST https://localhost:7108/api/auth/forgotpassword application/json 44 - 200 - application/json;+charset=utf-8 345.5403ms 
 2025-03-23 16:16:56.4175 INFO Password reset email sent to instgaram.service@gmail.com 
+2025-03-23 17:11:09.0067 INFO Application Starting... 
+2025-03-23 17:11:18.8080 INFO User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2025-03-23 17:11:19.4329 INFO Now listening on: https://localhost:7108 
+2025-03-23 17:11:19.4329 INFO Now listening on: http://localhost:5196 
+2025-03-23 17:11:19.5580 INFO Application started. Press Ctrl+C to shut down. 
+2025-03-23 17:11:19.5580 INFO Hosting environment: Development 
+2025-03-23 17:11:19.5580 INFO Content root path: C:\Users\Lenovo\OneDrive\Desktop\AddressBook_Clone\AddressBook_2115001089\AddressBookAPI\ 
+2025-03-23 17:11:20.3366 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.html - - 
+2025-03-23 17:11:20.9626 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.html - - - 200 - text/html;charset=utf-8 629.1104ms 
+2025-03-23 17:11:20.9626 INFO Request starting HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - 
