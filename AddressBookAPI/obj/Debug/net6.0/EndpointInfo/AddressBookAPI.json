@@ -303,10 +303,6 @@
       "ResetPasswordReq": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
           "newPassword": {
             "type": "string",
             "nullable": true

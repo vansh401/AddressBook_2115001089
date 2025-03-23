@@ -1,6 +1,7 @@
 ﻿    using BusinessLayer.Interface;
     using Microsoft.AspNetCore.Mvc;
-    using ModelLayer.Model;
+using Middleware.RabbitMQ;
+using ModelLayer.Model;
 
     namespace AddressBookAPI.Controllers
     {
@@ -10,12 +11,13 @@
         {
             private readonly IUserBL _userService;
             private readonly ILogger<UserController> _logger;
-            private readonly IEmailService _emailService;
-            public UserController(ILogger<UserController> logger,IUserBL userService, IEmailService emailService)
+        
+        private readonly RabbitMQProducer _rabbitMQProducer;
+            public UserController(ILogger<UserController> logger,IUserBL userService,RabbitMQProducer rabbitMQProducer)
             {
                 _logger = logger;
                 _userService = userService;
-                _emailService = emailService;
+                _rabbitMQProducer = rabbitMQProducer;
             }
 
             [HttpPost]
@@ -71,7 +73,7 @@
         [Route("forgotpassword")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordReq model)
         {
-            _logger.LogInformation("Forgot Password request received with email: {Email}", model.Email);
+            _logger.LogInformation("ForgotPassword request received with email: {Email}", model.Email);
             var response = new ResponseModel<string>();
             try
             {
@@ -79,27 +81,18 @@
                 {
                     return BadRequest(new { success = false, message = "Email is required" });
                 }
-
                 var user = _userService.GetUserByEmail(model.Email);
-                if (user == null)
+                if (user != null)
                 {
-                    _logger.LogWarning("User not found with email: {Email}", model.Email);
-                    return BadRequest(new { success = false, message = "User not found" });
+                    string token = _userService.GenerateResetToken(user.Id, user.Email);
+                    _rabbitMQProducer.PublishMessage(user.Email, token);
+                    response.Success = true;
+                    response.Message = "Reset password link sent to email";
+                    return Ok(response);
                 }
-
-                if (string.IsNullOrWhiteSpace(user.Email) || user.Id == 0)
-                {
-                    _logger.LogError("Invalid user data. UserId or Email is missing.");
-                    return BadRequest(new { success = false, message = "Invalid user data" });
-                }
-
-                string token = _userService.GenerateResetToken(user.Id, user.Email);
-                _emailService.SendResetEmail(user.Email, token);
-
-                response.Success = true;
-                response.Message = "Reset password link sent to email";
-                response.Data = token;
-                return Ok(response);
+                response.Success = false;
+                response.Message = "User not found";
+                return BadRequest(response);
             }
             catch (Exception ex)
             {
@@ -109,7 +102,7 @@
         }
 
 
-        [HttpPost]
+            [HttpPost]
             [Route("resetpassword")]
             public IActionResult ResetPassword([FromQuery] string token, [FromBody] ResetPasswordReq model)
             {
