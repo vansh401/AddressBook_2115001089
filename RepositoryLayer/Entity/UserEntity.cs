@@ -23,6 +23,10 @@ namespace RepositoryLayer.Entity
         [Required]
         public string PasswordHash { get; set; }
 
+        [Required]
+        [MaxLength(20)]
+        public string Role { get; set; } = "User";
+
         //Navigation Property
         public ICollection<AddressBookEntity> AddressBookContacts { get; set; }
     }

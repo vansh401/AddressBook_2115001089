@@ -16,5 +16,6 @@ namespace BusinessLayer.Interface
         string GenerateResetToken(int userId, string email);
          UserEntity GetUserByEmail(string email);
         UserEntity ResetPassword(string token, ResetPasswordReq model);
+        UserEntity GetUserById(int userId);
     }
 }

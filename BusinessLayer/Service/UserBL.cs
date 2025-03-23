@@ -32,7 +32,8 @@ namespace BusinessLayer.Service
                 };
 
             string hashedPassword = HashingPassword.HashPassword(model.Password);
-            var user = _UserRepo.CreateUser(model.UserName, model.Email, hashedPassword);
+            var role = string.IsNullOrEmpty(model.Role) ? "User" : model.Role;
+            var user = _UserRepo.CreateUser(model.UserName, model.Email, hashedPassword,role);
 
             var response = new ResponseModel<string>
             {
@@ -92,9 +93,10 @@ namespace BusinessLayer.Service
             }
             return null;
         }
-
-
-
+        public UserEntity GetUserById(int userId)
+        {
+            return _UserRepo.GetUserById(userId);
+        }
 
 
     }

@@ -27,7 +27,7 @@ namespace RepositoryLayer.Service
             return _context.AddressBookContacts.FirstOrDefault(x=> x.UserId==userId && x.Id == id);
         }
 
-        public AddressBookEntity AddContact(int userId, string name, string number)
+        public AddressBookEntity AddContact(int userId, string name, string number, string email, string address)
         {
             var user=_context.Users.FirstOrDefault(x=>x.Id== userId);
             if (user == null)
@@ -39,6 +39,8 @@ namespace RepositoryLayer.Service
             {
                 Name=name,
                 Number=number,
+                Email=email,
+                Address=address,
                 UserId=userId
             };
 
@@ -47,7 +49,7 @@ namespace RepositoryLayer.Service
             return contact;
         }
 
-        public bool UpdateContact(int userId,int id,string newName,string newNumber)
+        public bool UpdateContact(int userId,int id,string newName,string newNumber, string email, string address)
         {
             var contact=_context.AddressBookContacts.FirstOrDefault(x=> x.Id== id && x.UserId==userId);
             if (contact == null)
@@ -56,6 +58,8 @@ namespace RepositoryLayer.Service
             }
             contact.Name=newName;
             contact.Number=newNumber;
+            contact.Email=email;
+            contact.Address=address;
             _context.SaveChanges();
             return true;
         }
@@ -70,7 +74,22 @@ namespace RepositoryLayer.Service
             _context.AddressBookContacts.Remove(contact);
             _context.SaveChanges();
             return true;
-        } 
+        }
+        public List<AddressBookEntity> GetAllContactsForAdmin()
+        {
+            return _context.AddressBookContacts.ToList();
+        }
+
+        public bool DeleteContactByAdmin(int contactId)
+        {
+            var contact = _context.AddressBookContacts.FirstOrDefault(g => g.Id == contactId);
+            if (contact == null)
+                return false;
+
+            _context.AddressBookContacts.Remove(contact);
+            _context.SaveChanges();
+            return true;
+        }
 
     }
 }

@@ -39,10 +39,11 @@ namespace RepositoryLayer.Helper
 
             var claims = new[]
             {
-        new Claim("userId", user.Id.ToString()),
-        new Claim("userName", user.UserName ?? string.Empty),
-        new Claim("email", user.Email ?? string.Empty)
-    };
+                new Claim("userId",user.Id.ToString()),
+                new Claim("userName", user.UserName),
+                new Claim("email", user.Email),
+                new Claim ("role",user.Role)
+            };
 
             var token = new JwtSecurityToken(
                 issuer: jwtSettings["Issuer"],
@@ -58,34 +59,22 @@ namespace RepositoryLayer.Helper
 
         public string GenerateResetToken(int userId, string email)
         {
-            if (userId <= 0 || string.IsNullOrWhiteSpace(email))
-            {
-                throw new ArgumentException("Invalid userId or email for reset token generation.");
-            }
-
-            var resetSecret = _configuration["Jwt:ResetSecret"];
-            if (string.IsNullOrWhiteSpace(resetSecret))
-            {
-                throw new Exception("JWT ResetSecret is missing in appsettings.json.");
-            }
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(resetSecret));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:ResetSecret"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
-        new Claim("userId", userId.ToString()),
-        new Claim("email", email)
-    };
+                new Claim("userId", userId.ToString()),
+                new Claim("email", email)
+            };
 
             var token = new JwtSecurityToken(
                 issuer: "AddressBook",
                 audience: "AddressBookUser",
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.UtcNow.AddHours(1), 
                 signingCredentials: creds
             );
-
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 

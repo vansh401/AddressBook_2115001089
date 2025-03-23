@@ -1,5 +1,7 @@
-﻿    using BusinessLayer.Interface;
-    using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using BusinessLayer.Interface;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Middleware.RabbitMQ;
 using ModelLayer.Model;
 
@@ -11,8 +13,7 @@ using ModelLayer.Model;
         {
             private readonly IUserBL _userService;
             private readonly ILogger<UserController> _logger;
-        
-        private readonly RabbitMQProducer _rabbitMQProducer;
+            private readonly RabbitMQProducer _rabbitMQProducer;
             public UserController(ILogger<UserController> logger,IUserBL userService,RabbitMQProducer rabbitMQProducer)
             {
                 _logger = logger;
@@ -127,5 +128,40 @@ using ModelLayer.Model;
                     return BadRequest(new { Success = false, Message = "Process Failed", Error = ex.Message });
                 }
             }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public IActionResult GetUserProfile()
+        {
+            try
+            {
+                _logger.LogInformation("Fetching User Profile...");
+                var userId = User.FindFirstValue("userId");
+                var response = new ResponseModel<string>();
+                if (string.IsNullOrEmpty(userId))
+                {
+                    response.Success = false;
+                    response.Message = "Invalid user token.";
+                    return Unauthorized(response);
+                }
+
+                var user = _userService.GetUserById(int.Parse(userId));
+                if (user == null)
+                {
+                    response.Success = false;
+                    response.Message = "User not found.";
+                    return NotFound(response);
+                }
+                response.Success = true;
+                response.Message = "User found";
+                response.Data = $"id: {user.Id}, UserName: {user.UserName}, Email: {user.Email}, Role: {user.Role}";
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred.", error = ex.Message });
+            }
         }
+
+    }
     }

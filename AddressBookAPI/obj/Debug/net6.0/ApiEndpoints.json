@@ -26,6 +26,16 @@
         "Name": "contactNumber",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "address",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -68,6 +78,16 @@
         "Name": "number",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "address",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -76,6 +96,32 @@
     "ContainingType": "AddressBookAPI.Controllers.AddressBookAPIController",
     "Method": "DeleteContactById",
     "RelativePath": "api/addressbook/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AddressBookAPI.Controllers.AddressBookAPIController",
+    "Method": "GetAllContactsForAdmin",
+    "RelativePath": "api/addressbook/admin/contacts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AddressBookAPI.Controllers.AddressBookAPIController",
+    "Method": "DeleteContactByAdmin",
+    "RelativePath": "api/addressbook/admin/contacts/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -118,6 +164,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AddressBookAPI.Controllers.UserController",
+    "Method": "GetUserProfile",
+    "RelativePath": "api/auth/profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
