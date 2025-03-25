@@ -188,3 +188,4 @@ WHERE [u].[Email] = @__email_0
 2025-03-23 17:11:20.3366 INFO Request starting HTTP/2 GET https://localhost:7108/Swagger/index.html - - 
 2025-03-23 17:11:20.9626 INFO Request finished HTTP/2 GET https://localhost:7108/Swagger/index.html - - - 200 - text/html;charset=utf-8 629.1104ms 
 2025-03-23 17:11:20.9626 INFO Request starting HTTP/2 GET https://localhost:7108/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-24 22:25:21.0817 INFO Application Starting... 

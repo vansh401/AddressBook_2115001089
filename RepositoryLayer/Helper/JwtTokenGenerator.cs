@@ -82,13 +82,9 @@ namespace RepositoryLayer.Helper
 
         public int ResetPassword(string token, ResetPasswordReq model)
         {
-            var resetSecret = _configuration["Jwt:ResetSecret"];
-            if (string.IsNullOrWhiteSpace(resetSecret))
-            {
-                throw new Exception("JWT ResetSecret is missing in appsettings.json.");
-            }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(resetSecret));
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:ResetSecret"]));
             var handler = new JwtSecurityTokenHandler();
 
             var claimsPrincipal = handler.ValidateToken(token, new TokenValidationParameters

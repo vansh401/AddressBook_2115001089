@@ -12,7 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using CacheLayer.Service;
 using StackExchange.Redis;
-using Middleware.RabbitMQ;
+using Middleware.RabbitMQ.Service;
+using Middleware.RabbitMQ.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
@@ -57,8 +58,8 @@ builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserRL, UserRL>();
 builder.Services.AddScoped<JwtTokenGenerator>();
 builder.Services.AddSingleton<IEmailService, EmailService>();
+builder.Services.AddSingleton<IRabbitMQProducer,RabbitMQProducer>();
 builder.Services.AddSingleton<RabbitMQConsumer>();
-builder.Services.AddSingleton<RabbitMQProducer>();
 
 // NLog Configuration
 builder.Logging.ClearProviders();

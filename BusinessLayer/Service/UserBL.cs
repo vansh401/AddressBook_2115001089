@@ -28,7 +28,8 @@ namespace BusinessLayer.Service
                 return new ResponseModel<string>
                 {
                     Success = false,
-                    Message = "Email already exists"
+                    Message = "Email already exists",
+                    Data = null
                 };
 
             string hashedPassword = HashingPassword.HashPassword(model.Password);
