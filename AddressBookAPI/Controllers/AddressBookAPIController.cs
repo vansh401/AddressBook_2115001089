@@ -126,8 +126,8 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public IActionResult AddContact(string contactName, string contactNumber, string email, string address)
         {
             try
@@ -155,8 +155,8 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-        [Authorize]
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateContactById(int id, string name, string number,string email, string address)
         {
             try
@@ -196,9 +196,9 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-        [Authorize]
         [HttpDelete]
         [Route("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteContactById(int id)
         {
             try
@@ -239,8 +239,8 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet("admin/contacts")]
+        [Authorize(Roles = "Admin")]
 
         public IActionResult GetAllContactsForAdmin()
         {
@@ -266,8 +266,8 @@ namespace AddressBookAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpDelete("admin/contacts/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteContactByAdmin(int id)
         {
             try

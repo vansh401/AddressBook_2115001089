@@ -2,19 +2,20 @@
 using BusinessLayer.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Middleware.RabbitMQ;
+using Middleware.RabbitMQ.Interface;
+using Middleware.RabbitMQ.Service;
 using ModelLayer.Model;
 
-    namespace AddressBookAPI.Controllers
-    {
-        [ApiController]
+namespace AddressBookAPI.Controllers
+{
+    [ApiController]
         [Route("api/auth")]
         public class UserController:ControllerBase
         {
             private readonly IUserBL _userService;
             private readonly ILogger<UserController> _logger;
-            private readonly RabbitMQProducer _rabbitMQProducer;
-            public UserController(ILogger<UserController> logger,IUserBL userService,RabbitMQProducer rabbitMQProducer)
+            private readonly IRabbitMQProducer _rabbitMQProducer;
+            public UserController(ILogger<UserController> logger,IUserBL userService,IRabbitMQProducer rabbitMQProducer)
             {
                 _logger = logger;
                 _userService = userService;

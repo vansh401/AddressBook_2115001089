@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Middleware.RabbitMQ
+namespace Middleware.RabbitMQ.Service
 {
     public class RabbitMQConsumer
     {
@@ -32,7 +32,7 @@ namespace Middleware.RabbitMQ
                 Password = _config["RabbitMQ:Password"]
             };
 
-            var connection=factory.CreateConnection();
+            var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
             channel.QueueDeclare(
                 queue: _config["RabbitMQ:QueueName"],

@@ -30,10 +30,6 @@ namespace RepositoryLayer.Service
         public AddressBookEntity AddContact(int userId, string name, string number, string email, string address)
         {
             var user=_context.Users.FirstOrDefault(x=>x.Id== userId);
-            if (user == null)
-            {
-                throw new InvalidOperationException("User Not Found");
-            }
 
             var contact = new AddressBookEntity
             {

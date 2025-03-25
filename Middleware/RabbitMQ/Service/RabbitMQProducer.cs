@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using Newtonsoft.Json;
+using Middleware.RabbitMQ.Interface;
 
-namespace Middleware.RabbitMQ
+namespace Middleware.RabbitMQ.Service
 {
-    public class RabbitMQProducer
+    public class RabbitMQProducer:IRabbitMQProducer
     {
         private readonly IConfiguration _config;
         public RabbitMQProducer(IConfiguration config)
@@ -26,7 +27,7 @@ namespace Middleware.RabbitMQ
                 UserName = _config["RabbitMQ:Username"],
                 Password = _config["RabbitMQ:Password"],
             };
-            var connection=factory.CreateConnection();
+            var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
             channel.QueueDeclare(
@@ -41,8 +42,8 @@ namespace Middleware.RabbitMQ
                 Email = email,
                 Token = token
             };
-            var json=JsonConvert.SerializeObject(message);
-            var body=Encoding.UTF8.GetBytes(json);
+            var json = JsonConvert.SerializeObject(message);
+            var body = Encoding.UTF8.GetBytes(json);
 
             channel.BasicPublish(
                 exchange: "",
